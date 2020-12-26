@@ -12,5 +12,26 @@ var intSet = Set<Int>()
 // initialize a set from an array literal
 var stringSet: Set = ["one", "two", "three"]
 
+print("unordered set:")
+for num in stringSet {
+	print(num)
+}
+
+// the sorted() on strings is alphabetical!
+print("\nordered set:")
+for num in stringSet.sorted() {
+	print(num)
+}
+
+// check if element exists
+if stringSet.contains("one") {
+	print("\nelement found\n")
+} else {
+	print("\nelement not found\n")
+}
+
+
+/* ------- Adding an element -------- */
+stringSet.insert("four")
 print(stringSet)
 
