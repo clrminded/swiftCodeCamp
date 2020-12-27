@@ -35,3 +35,44 @@ if stringSet.contains("one") {
 stringSet.insert("four")
 print(stringSet)
 
+/* ----- Removing an element ------- */
+stringSet.remove("four")
+
+if let index = stringSet.firstIndex(of: "one") {
+	stringSet.remove(at: index)
+}
+
+stringSet.removeFirst()
+print(stringSet)
+
+stringSet.removeAll()
+
+/* ------ Set Operations -------- */
+// these are operations that compare sets
+// the UNION between two sets include all values from both sets
+let A: Set = [1, 3, 5, 7]
+let B: Set = [0, 2, 4, 6]
+
+print(A.union(B))
+
+// intersection of two sets are elements are 
+// in common with both
+
+let C: Set = [1, 2, 3, 4, 5]
+let D: Set = [0, 2, 4, 6, 8]
+print(C.intersection(D))
+
+// subtracting two sets will include all the
+// elements in the first set except for element
+// that belongs in the second set
+
+let E: Set = [3, 3, 5, 7, 9, 2]
+let F: Set = [3, 7, 2]
+print(E.subtracting(F))
+
+var G: Set = [1, 2, 3, 4, 5]
+var H: Set = [0, 2, 4, 6, 8]
+print(G.symmetricDifference(H))
+
+
+
