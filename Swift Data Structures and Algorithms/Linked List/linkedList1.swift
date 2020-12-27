@@ -39,7 +39,50 @@ public class SinglyLinkedList<listType> {
 	}
 	
 	// insert value at a given index
-	func insert 
+	func insert(value: listType, index: Int) {
+		let newNode = Node(value: value)
+		
+		if (index == 0) {
+			newNode.next = head
+			head = newNode
+		} else {
+			var prev = head
+			var cur = head
+			
+			for _ in 0..<index {
+				prev = cur
+				cur = cur?.next
+			}
+			
+			newNode.next = prev?.next
+			prev?.next = newNode
+		}
+	}
+	
+	public func removeLast() -> listType? {
+		if let h = head {
+			if h.next == nil {
+				defer {
+					head = nil
+					tail = nil
+				}
+				return h.value
+			}
+			
+			var prev = h
+			var curr = h
+			while let next = curr.next {
+				prev = curr
+				curr = next
+			}
+			prev.next = nil
+			tail = prev
+			return curr.value
+		} else {
+			return nil
+		}
+	}
+	
 	
 	public var isEmpty: Bool {
 		return head == nil
@@ -64,4 +107,12 @@ newList.append(value: 4)
 newList.append(value: 6)
 newList.append(value: 8)
 
+newList.insert(value: 1, index: 0)
+newList.insert(value: 3, index: 2)
+newList.insert(value: 5, index: 4)
+
 print(newList)
+
+newList.removeLast()
+print(newList)
+
