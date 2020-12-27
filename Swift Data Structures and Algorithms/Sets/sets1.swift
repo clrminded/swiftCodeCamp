@@ -75,4 +75,37 @@ var H: Set = [0, 2, 4, 6, 8]
 print(G.symmetricDifference(H))
 
 
+/* ----- Comparision operators ------- */
+let compareA: Set = [2, 4, 6, 8, 10]
+let compareB: Set = [0, 3, 7, 6, 8]
+let compareC: Set = [10, 8, 4, 2, 6]
 
+if compareA == compareB {
+	print("compareA and compareB are equal")
+} else {
+	print("compareA and compareB are different")
+}
+
+if compareA == compareC {
+	print("compareA and compareC are equal")
+} else {
+	print("compareA and compareC are different")
+}
+
+/* ------ Set membership ------- */
+let memberA: Set = [2, 4, 6, 8, 10]
+let memberB: Set = [0, 4, 2, 6, 7, 9, 10, 8]
+
+// returns true because B contains all elements of A
+print("isSubset:", memberA.isSubset(of:memberB))
+
+// returns true because B contains all values of A
+print("isSuperset:", memberB.isSuperset(of: memberA))
+
+// returns true because B contains all elements
+// in A, and both sets are not equal
+print("isStrictSubset:", memberA.isStrictSubset(of: memberB))
+
+// returns false because A and B have some
+// values in common
+print("isDisjointWith:", memberA.isDisjoint(with: memberB))
