@@ -1,8 +1,9 @@
-class Node<T> {
+class Node<T: Equatable> {
 	
 	var data: T
 	weak var parent: Node?
 	var children: [Node] = []
+	
 	
 	init(data: T) {
 		self.data = data
@@ -21,6 +22,22 @@ class Node<T> {
 		let text = printNodeData().joined(separator: "\n")
 		print(text)
 	}
+	
+	// conform the T generic protocol to Equatable
+	func search(element: T) -> Node? {
+	
+		if element == self.data {
+			return self
+		}
+		
+		for child in children {
+			if let result = child.search(element: element) {
+				return result
+			}
+		}
+		return nil
+	}
+	
 }
 
 
@@ -37,3 +54,9 @@ type2.add(child: Node(data: "Cola"))
 type2.add(child: Node(data: "Fanta"))
 
 drinks.printTree()
+
+let latte = drinks.search(element: "Latte")
+
+if let result = latte {
+	result.printTree()
+}
