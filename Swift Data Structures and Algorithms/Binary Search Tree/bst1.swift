@@ -57,9 +57,43 @@ class BinarySearchTree<T: Comparable & CustomStringConvertible> {
 		}
 	}
 	
+	func removeValue(sValue: T) {
+		rootNode = removeNode(rNode: rootNode, value: sValue)
+	}
 	
+	private func removeNode(rNode: BTNode<T>?, value: T) -> BTNode<T>? {
+		guard let node = rNode else {
+			return nil
+		}
+		
+		if value == node.value {
+			if node.leftChild == nil && node.rightChild == nil {
+				return nil
+			}
+			if node.leftChild == nil {
+				return node.rightChild
+			}
+			if node.rightChild == nil {
+				return node.leftChild
+			}
+			node.value = node.rightChild!.min.value
+			node.rightChild = removeNode(rNode: node.rightChild, value: node.value)
+			
+		} else if value < node.value {
+			node.leftChild = removeNode(rNode: node.leftChild, value: value)
+		} else {
+			node.rightChild = removeNode(rNode: node.rightChild, value: value)
+		}
+		return node
+	}
 	
 // end of class
+}
+
+extension BTNode{
+	var min: BTNode {
+		return leftChild?.min ?? self
+	}
 }
 
 var binaryST = BinarySearchTree<Int>()
@@ -68,4 +102,6 @@ for i in 0..<5 {
 	binaryST.insert(insertedValue: i)
 }
 
+binaryST.searchValue(sValue: 4)
+binaryST.removeValue(sValue: 4)
 binaryST.searchValue(sValue: 4)
